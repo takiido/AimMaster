@@ -5,23 +5,41 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Camera _cam;
+    // References
+    public Transform pitchTarget;
+    public Transform yawTarget;
+    
+    // Settings
+    public float sens;
+    public float conversion;
+    
+    // Input
     private Vector2 _lookInput;
-
-    private void Start()
-    {
-        _cam = GetComponentInChildren<Camera>();
-    }
     
     private void Update()
     {
-        _lookInput.y = Mathf.Clamp(_lookInput.y, -90.0f, 90.0f);
-        Quaternion xQuat = Quaternion.AngleAxis(_lookInput.x, Vector3.up);
-        Quaternion yQuat = Quaternion.AngleAxis(_lookInput.y, Vector3.left);
-
-        _cam.transform.localRotation = xQuat * yQuat;
+        // Preventing player to break the clamping bounds
+        float epsilon = 0.01f;
+        
+        _lookInput.x %= 360.0f;
+        _lookInput.y = Mathf.Clamp(_lookInput.y, -90.0f + epsilon, 90.0f - epsilon);
+        
+        pitchTarget.localRotation =
+            Quaternion.Euler(-_lookInput.y, pitchTarget.localEulerAngles.y, pitchTarget.localEulerAngles.z);
+        yawTarget.localRotation =
+            Quaternion.Euler(yawTarget.localEulerAngles.x, _lookInput.x, yawTarget.localEulerAngles.z);
     }
-    
+
+    private void OnEnable()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void OnDisable()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     private void Shoot()
     {
         Debug.Log("Shot!");
@@ -29,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        _lookInput += context.performed ? context.ReadValue<Vector2>() : Vector2.zero;
+        _lookInput += context.performed ? context.ReadValue<Vector2>() * sens * conversion : Vector2.zero;
     }
     
     public void OnAttack(InputAction.CallbackContext context)
