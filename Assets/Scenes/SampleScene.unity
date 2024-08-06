@@ -374,6 +374,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1251844564}
     - target: {fileID: 2897328378970995767, guid: 69fe5585fdfcdc5468409f3f4300684c, type: 3}
+      propertyPath: conversion
+      value: 0.02200005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897328378970995767, guid: 69fe5585fdfcdc5468409f3f4300684c, type: 3}
       propertyPath: pitchTarget
       value: 
       objectReference: {fileID: 1251844564}
