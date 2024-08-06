@@ -1,0 +1,35 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/AimMaster.uss?fileID=7433441132597879392&amp;guid=b80215cdd6123b348b43a6ef9bfdd094&amp;type=3#AimMaster" />
+    <ui:VisualElement name="Topbar" class="topbar">
+        <ui:VisualElement name="Topbar-container-L" class="topbar-container" style="flex-grow: 1;">
+            <ui:Label text="AM" name="Title" class="title" />
+        </ui:VisualElement>
+        <ui:Button text="PLAY" name="PlayButton" class="start-button" />
+        <ui:VisualElement name="Topbar-container-R" class="topbar-container" style="flex-grow: 1; flex-direction: row-reverse;">
+            <ui:Button text="C" name="ExitButton" class="topbar-button" />
+            <ui:Button text="A" name="SettingsButton" class="topbar-button" />
+            <ui:Button text="B" class="topbar-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="ProfileQuickInfoCard" class="quick-info-card">
+        <ui:Label text="Stats" name="CardTitle" class="header card-title" />
+        <ui:VisualElement name="ShotsMade" class="card-key-value">
+            <ui:Label text="Shots made:" name="ShotsMade-key" class="text card-text" />
+            <ui:Label text="5984" name="ShotsMade-key" class="text card-text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Accuracy" class="card-key-value">
+            <ui:Label text="Accuracy:" name="Accuracy-key" enable-rich-text="false" class="text card-text" />
+            <ui:Label text="98" name="Accuracy-key" class="text card-text" />
+        </ui:VisualElement>
+        <ui:VisualElement name="GraphWrapper" class="graph-wrapper">
+            <ui:VisualElement name="GraphViewport" class="graph-viewport">
+                <ui:VisualElement name="Dot" class="graph-dot" style="top: 2px;" />
+                <ui:VisualElement name="Dot" class="graph-dot" style="top: 22px;" />
+                <ui:VisualElement name="Dot" class="graph-dot" style="top: 22px;" />
+                <ui:VisualElement name="Dot" class="graph-dot" style="top: 22px;" />
+                <ui:VisualElement name="Dot" class="graph-dot" style="top: 22px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="UpdatesQuickInfoCard" class="quick-info-card" style="right: 20px; left: auto;" />
+</ui:UXML>
